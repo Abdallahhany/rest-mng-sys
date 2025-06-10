@@ -53,6 +53,7 @@ export class ProductsService {
     throw new BadRequestException(`Not enough stock for product: ${product.name}`);
   }
 
+  // you may have race issue here, it is better to use $inc in db directly
   product.quantity -= quantity;
   await product.save();
 }

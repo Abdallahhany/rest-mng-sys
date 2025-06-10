@@ -24,6 +24,9 @@ export class CustomersService {
             throw new BadRequestException(`Enter a valid ID`);
         }
         const customer = await this.customerModel.findById(id).exec();
+
+        // should let throw error responsibility to the service which use the method
+        // this is cleaner
         if (!customer) {
             throw new NotFoundException(`Customer with ID ${id} not found`);
         }
