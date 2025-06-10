@@ -43,26 +43,7 @@ import redisConfig from './config/redis.config';
     OrdersModule,
     ReportsModule,
     ProductsModule,
-    CustomersModule,
-CacheModule.registerAsync({
-      isGlobal: true,
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => {
-        const host = configService.get<string>('redis.host');
-        const port = configService.get<number>('redis.port');
-        const ttl = configService.get<number>('redis.ttl');
-        return {
-          store: await redisStore({
-            socket: {
-              host,
-              port,
-            },
-            ttl,
-          }),
-        };
-      },
-    }),
+    CustomersModule
   ],
   controllers: [AppController],
   providers: [AppService],
